@@ -4,7 +4,7 @@ services:
     container_name: redis_1
     command: ["redis-server", "--appendonly", "yes", "--port", "6379"]
     # Caso queira utilizar com senha, utilize esta linha:
-    # command: ["redis-server", "--appendonly", "yes", "--port", "6379", "--requirepass", "SENHA_AQUI"]
+    # command: ["redis-server", "--appendonly", "yes", "--port", "6379", "--requirepass", "${REDIS_PASSWORD}"]
     networks:
       - app_network
     volumes:

@@ -10,7 +10,7 @@ services:
     networks:
       - app_network
     environment:
-      - SERVER_URL=http://192.168.15.9:8080
+      - SERVER_URL=${EVOLUTION_SERVER_URL}
       - DEL_INSTANCE=false
       - DEL_TEMP_INSTANCES=false
       - PROVIDER_ENABLED=false
@@ -19,7 +19,7 @@ services:
       - PROVIDER_PREFIX=evolution_v2
       - DATABASE_ENABLED=true
       - DATABASE_PROVIDER=postgresql
-      - DATABASE_CONNECTION_URI=postgresql://postgres:minha_senha@postgres:5432/evolution
+      - DATABASE_CONNECTION_URI=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB_EVOLUTION}
       - DATABASE_CONNECTION_CLIENT_NAME=evolution_v2
       - RABBITMQ_ENABLED=false
       - RABBITMQ_URI=amqp://admin:admin@rabbitmq:5672/default
@@ -98,7 +98,7 @@ services:
       - TYPEBOT_API_VERSION=latest
       - CHATWOOT_ENABLED=true
       - CHATWOOT_MESSAGE_READ=true
-      - CHATWOOT_IMPORT_DATABASE_CONNECTION_URI=postgresql://postgres:minha_senha@postgres:5432/chatwoot?sslmode=disable
+      - CHATWOOT_IMPORT_DATABASE_CONNECTION_URI=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB_CHATWOOT}?sslmode=disable
       - CHATWOOT_IMPORT_PLACEHOLDER_MEDIA_MESSAGE=true
       - CACHE_REDIS_ENABLED=true
       - CACHE_REDIS_URI=redis://redis:6379
@@ -106,14 +106,14 @@ services:
       - CACHE_REDIS_SAVE_INSTANCES=false
       - CACHE_LOCAL_ENABLED=false
       - S3_ENABLED=true
-      - S3_ACCESS_KEY=mI4u3ru7h1yfkUnt7h10
-      - S3_SECRET_KEY=FhaFemGaGHyQRGIfwD5J745WRTyF6gnoc6id6uJ0
-      - S3_BUCKET=evolution
+      - S3_ACCESS_KEY=${EVOLUTION_S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${EVOLUTION_S3_SECRET_KEY}
+      - S3_BUCKET=${EVOLUTION_S3_BUCKET}
       - S3_PORT=9002:9000
       - S3_ENDPOINT=minio
       - S3_PORT= 9000
       - S3_USE_SSL=false
-      - AUTHENTICATION_API_KEY=ies0F6xS9MTy8zxloNaJ5Ec3tyhuPA0f
+      - AUTHENTICATION_API_KEY=${EVOLUTION_AUTHENTICATION_API_KEY}
       - AUTHENTICATION_EXPOSE_IN_FETCH_INSTANCES=true
       - LANGUAGE=pt_BR
       - TELEMETRY=false
